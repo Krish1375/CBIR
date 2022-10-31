@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+    <head>
+        <meta charset="UTF-8">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/another.css') }}">
+    </head>
+    {% block content %}
+        <div class="container">
+            <h1  data-text ="Logo&nbsp;Comparator">Logo Comparator</h1>
+            <p id="output">
+            </p>
+            <form method="POST" enctype="multipart/form-data">
+            <div  id="div-01">
+                
+                <div class="buttons" style="position:fixed; left:400px; top:220px">
+                    
+                <input type="file" class="inputfile" name = "query_img" ><br> <br><br>
+                
+                <input type="submit" class="submitButton">
+                </div>
+            </div>
+            </form>
+            {% if query_path %}
+            
+            <h2 align="center">Query</h2>
+    
+            <img src="{{ query_path }}" class="center">
+            
+            <h2 align="center">Results:</h2>
+            {% endif %}
+            
+            {% for score in scores %}
+  
+            
+            <figure style="float: left; margin-right: 20px; margin-bottom: 20px;">
+                    <!-- <a href="https://rapidapi.com/crunchbase-team1-crunchbase/api/crunchbase/" target="_blank"> -->
+                <img class="image__img" id="img_result" src="{{ score[1] }}" height="200px" border="3" alt="{{ score[1] }}" align="left"><br>
+             
+       
+                   
+                     <script>
+                         var i = -1;
+                         i++;
+                     </script>
+                <p class="image__description">
+                    {{ score[0] }}
+                    <br>
+                    {{ score[2] }}
+                        
+                    </p>
+            <figcaption></figcaption>
+            </figure>
+            <script>
+                var div = document.getElementById('div-01');
+                div.remove();
+             </script>
+            {% endfor %}
+
+        </p>
+        </div>
+        
+    {% endblock %}
+
+
+
